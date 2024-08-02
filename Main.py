@@ -1,5 +1,8 @@
 import os
-from Archivos_dummy import dummy
+from Dummys.Archivos_dummy import dummy
+from Dummys.Archivos_Target import Archivos_Target
+from Dummys.Archivos_Flat import Archivos_Flat
+from Dummys.Archivos_Dark import Archivos_Dark
 
 #Acá creamos los dummy para reemplazar los archivos
 dummy()
@@ -20,71 +23,25 @@ Cantidad_imagenes_text = input('¿cuantas imagenes van a tomar?:')
 Exp_name = "tiempo_exp"
 Exp_text = input('escribe el tiempo de exposición en segundos:')
 
+Archivos_Target(Target_name, Target_text, filtro_name, filtro_text, Cantidad_imagenes, Cantidad_imagenes_text, Exp_name, Exp_text)
 
-#lectura de los archivos
-with open(r'Target_dummy.esq', 'r') as file: 
-  
-    #Target
-    data_target = file.read() 
-    data_target = data_target.replace(Target_name, Target_text)
-    
-    #filtro
-    data_filtro = file.read()
-    data_filtro = data_filtro.replace(filtro_name, filtro_text)
+Archivos_Flat(filtro_name, filtro_text,Exp_name, Exp_text)
 
-    #cantidad de imagenes
-    data_cantidad = file.read()
-    data_cantidad = data_cantidad.replace(Cantidad_imagenes, Cantidad_imagenes_text)
-
-    #tiempo de exposición
-    data_tiempo = file.read()
-    data_tiempo = data_tiempo.replace(Exp_name, Exp_text)
-  
-
-with open(r'Flat_dummy.esq', 'r') as file:
-    
-    #filtro
-    data_filtro = file.read()
-    data_filtro = data_filtro.replace(filtro_name, filtro_text)
-
-    #tiempo de exposición
-    data_tiempo = file.read()
-    data_tiempo = data_tiempo.replace(Exp_name, Exp_text)
+Archivos_Dark(Exp_name, Exp_text)
 
 
-with open(r'Dark_dummy.esq', 'r') as file:
-    
-    #tiempo de exposición
-    data_tiempo = file.read()
-    data_tiempo = data_tiempo.replace(Exp_name, Exp_text)
-
-
-#Reemplazos de las palabras clave en los esq
-with open(r'Target_dummy.esq', 'w') as file: 
-  
-    file.write(data_target)
-    file.write(data_filtro)
-    file.write(data_cantidad)
-    file.write(data_tiempo)
-
-with open(r'Flat_dummy.esq', 'w') as file:
-
-    file.write(data_filtro)
-    file.write(data_tiempo)
-
-with open(r'Dark_dummy.esq', 'w') as file:
-    file.write(data_tiempo)
-
-
+os.mkdir(f'Esquema de OBS para {Target_text}')
 
 #nombre del target
-os.rename('Target_dummy.esq',f'{Target_text}_{filtro_text}_{Exp_text}_sec.esq')
+os.rename('Target_dummy_4.esq',f'Esquema de OBS para {Target_text}/{Target_text}_{filtro_text}_{Exp_text}_sec.esq')
 
 #Nombre para el FLAT
-os.rename('Flat_dummy.esq',f'Flat_{filtro_text}_{Exp_text}_sec.esq')
+os.rename('Flat_dummy_2.esq',f'Esquema de OBS para {Target_text}/Flat_{filtro_text}_{Exp_text}_sec.esq')
 
 #nombre para Darks
-os.rename('Dark_dummy.esq',f'Dark_{Exp_text}_sec.esq')
+os.rename('Dark_dummy.esq',f'Esquema de OBS para {Target_text}/Dark_{Exp_text}_sec.esq')
+
+
 
 
 print("Tabla de observación creada") 
