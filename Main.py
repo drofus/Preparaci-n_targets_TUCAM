@@ -3,8 +3,19 @@ from Dummys.Archivos_dummy import dummy
 from Dummys.Archivos_Target import Archivos_Target
 from Dummys.Archivos_Flat import Archivos_Flat
 from Dummys.Archivos_Dark import Archivos_Dark
+from Dummys.Archivos_Bias import Archivos_Bias, dummy_bias
 
 pregunta = int(input('¿Cuantos targets vas a observar?'))
+
+#TIEMPO BIAS
+dummy_bias()
+bias = "cantidad_exp"
+cantidad_bias = input("¿cuantos BIAS vas a tomar para tu observación?")
+
+Archivos_Bias(bias,cantidad_bias)
+
+ #nombre para BIAS
+os.rename('Bias_dummy.esq', f'BIAS.esq')
 
 #Acá creamos los dummy para reemplazar los archivos
 for i in range(pregunta):
@@ -30,7 +41,6 @@ for i in range(pregunta):
     Archivos_Flat(filtro_name, filtro_text,Exp_name, Exp_text)
 
     Archivos_Dark(Exp_name, Exp_text)
-
 
     os.mkdir(f'Esquema de OBS para {Target_text}')
 
