@@ -1463,7 +1463,7 @@ def codigo():
             print("---------------------------------------------")
             Target_name = input("Escribe el nombre de tu target")
             print("---------------------------------------------")
-            filtro_name = input("elige el tipo de filtro (R,B,V,U,Ha,X):")
+            filtro_name = input("elige el tipo de filtro (R,I,B,V,U,Ha,X):")
             print("---------------------------------------------")
             Cantidad_imagenes_name = input('¿cuantas imagenes van a tomar?:')
             print("---------------------------------------------")
